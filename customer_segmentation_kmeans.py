@@ -1,5 +1,3 @@
-# Задание 1. Сегментация клиентов
-
 from pathlib import Path
 
 import matplotlib.pyplot as plt
@@ -24,12 +22,11 @@ FIGURES_DIR = RESULTS_DIR / "figures"
 def generate_customer_data(n_customers: int = N_CUSTOMERS) -> pd.DataFrame:
     rng = np.random.default_rng(SEED)
     segment_sizes = [180, 150, 150, n_customers - 480]
-    # Генерируем клиентов с разными привычками покупок.
     profiles = [
-        (30, 45, 3.0),    # молодые клиенты с редкими недорогими покупками
-        (42, 110, 6.0),   # регулярные клиенты со средним чеком
-        (48, 260, 3.5),   # клиенты с высоким средним чеком
-        (55, 180, 12.0),  # самые активные постоянные клиенты
+        (30, 45, 3.0),
+        (42, 110, 6.0),
+        (48, 260, 3.5),
+        (55, 180, 12.0),
     ]
 
     rows = []
@@ -89,7 +86,6 @@ def select_k(features: np.ndarray) -> tuple[int, pd.DataFrame]:
             }
         )
     metrics = pd.DataFrame(rows)
-    # Выбираем k с самым высоким коэффициентом силуэта.
     best_k = int(metrics.loc[metrics["silhouette_score"].idxmax(), "k"])
 
     fig, ax1 = plt.subplots(figsize=(9, 5))
