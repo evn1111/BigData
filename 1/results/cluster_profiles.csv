@@ -1,0 +1,6 @@
+,Age,Age,Age,AveragePurchaseValue,AveragePurchaseValue,AveragePurchaseValue,PurchaseFrequency,PurchaseFrequency,PurchaseFrequency
+,count,mean,median,count,mean,median,count,mean,median
+Cluster,,,,,,,,,
+1,168,48.55,48.5,168,252.41,254.98,168,4.43,4.0
+2,145,52.91,53.0,145,164.47,169.99,145,12.42,12.0
+3,287,33.2,33.0,287,68.35,53.2,287,4.84,5.0
