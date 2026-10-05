@@ -5,20 +5,21 @@
 
 ## Задания
 
-| Папка | Задание | Ветка |
-| --- | --- | --- |
-| `1` | Сегментация клиентов методом K-средних | `assignment-1` |
+| Задание | Ссылка |
+| --- | --- |
+| №1 — Сегментация клиентов методом K-средних | [assignment-1](https://github.com/evn1111/BigData/tree/assignment-1) |
 
-Каждое задание оформляется в отдельной ветке и добавляется в `main` через pull request. После объединения в `main` находится готовая работа.
+Каждое задание выполняется в отдельной ветке, созданной от `main`. Код, данные и отчёт находятся в корне соответствующей ветки. Ветки заданий не объединяются в `main`.
 
-Папки следующих заданий создаются по мере выполнения. Первое задание пока доступно в ветке `assignment-1`.
+Ветки `assignment-2`, `assignment-3` и `assignment-4` появятся по мере выполнения заданий.
 
 ## Запуск первого задания
 
 ```bash
 python3 -m venv .venv
+git switch assignment-1
 .venv/bin/python -m pip install -r requirements.txt
-MPLBACKEND=Agg .venv/bin/python 1/customer_segmentation_kmeans.py
+MPLBACKEND=Agg .venv/bin/python customer_segmentation_kmeans.py
 ```
 
 Данные, графики и отчёт находятся в папке задания. Учебные шаблоны и материалы курса в репозиторий не включены.
