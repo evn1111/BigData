@@ -141,84 +141,15 @@ def cluster_customers(data: pd.DataFrame, best_k: int) -> tuple[pd.DataFrame, pd
     return result, profiles, score
 
 
-def write_report(data: pd.DataFrame, metrics: pd.DataFrame, best_k: int, score: float) -> None:
-    cluster_stats = (
-        data.groupby("Cluster")[["Age", "AveragePurchaseValue", "PurchaseFrequency"]]
-        .mean()
-        .round(1)
-    )
-    recommendations = {
-        "low": "предлагать недорогие товары, welcome-скидки и рекомендации для увеличения частоты покупок",
-        "regular": "использовать персональные подборки, бонусную программу и скидки за повторную покупку",
-        "premium": "предлагать более дорогие товары и ранний доступ к новым коллекциям",
-        "active": "предлагать сопутствующие товары и накопительные бонусы за покупки",
-    }
-    ordered = cluster_stats.sort_values("AveragePurchaseValue")
-    rows = []
-    for cluster, row in ordered.iterrows():
-        if row["PurchaseFrequency"] == ordered["PurchaseFrequency"].max():
-            profile = "active"
-        elif row["AveragePurchaseValue"] == ordered["AveragePurchaseValue"].max():
-            profile = "premium"
-        elif row["PurchaseFrequency"] < ordered["PurchaseFrequency"].median():
-            profile = "low"
-        else:
-            profile = "regular"
-        rows.append(
-            f"- Кластер {cluster}: {int((data['Cluster'] == cluster).sum())} клиентов; "
-            f"средний возраст {row['Age']:.1f}; средний чек ${row['AveragePurchaseValue']:.2f}; "
-            f"частота покупок {row['PurchaseFrequency']:.1f}. Рекомендация: {recommendations[profile]}."
-        )
-
-    report = f"""# Задание №1. Сегментация клиентов методом K-средних
-
-## Цель
-
-Разделить клиентов интернет-магазина на группы и подобрать для каждой группы подходящие предложения.
-
-## Данные
-
-Для задания с помощью Python создан набор из {len(data)} клиентов. Для каждого клиента указаны возраст, средняя сумма покупки в долларах и число покупок за полгода. CustomerID — это номер клиента, поэтому в расчёт кластеров он не включён. Данные искусственные: они подходят для учебного примера, но не описывают реальный магазин.
-
-В таблице {len(data.columns) - 1} исходных столбца. Пропусков: {int(data.drop(columns='Cluster').isna().sum().sum())}. Повторяющихся номеров клиентов: {int(data['CustomerID'].duplicated().sum())}.
-
-Возраст клиентов: от {data['Age'].min()} до {data['Age'].max()} лет. Средний чек: от {data['AveragePurchaseValue'].min():.2f} до {data['AveragePurchaseValue'].max():.2f} долларов. Число покупок: от {data['PurchaseFrequency'].min()} до {data['PurchaseFrequency'].max()} за полгода. По графикам видно, что небольшие чеки и редкие покупки встречаются чаще, чем большие чеки и частые покупки.
-
-## Методика
-
-Возраст, сумма покупки и частота покупок имеют разные масштабы. Поэтому перед расчётом использован StandardScaler: из каждого значения вычитается среднее и результат делится на стандартное отклонение. Так сумма покупки не будет влиять на расстояния сильнее остальных признаков только из-за своих больших значений.
-
-Проверены варианты от 2 до 8 кластеров. Для каждого построена модель K-средних и рассчитан коэффициент силуэта. Он показывает, насколько клиенты похожи на свою группу и отличаются от соседних групп. Лучший результат получен при k = **{best_k}**. На графике локтя после этого значения снижение инерции становится менее резким. Для повторения результата используется random_state={SEED}.
-
-Для графика кластеров три признака сведены к двум с помощью PCA. Это нужно только для изображения: сама кластеризация выполнена по всем трём признакам.
-
-## Результаты
-
-Коэффициент силуэта итоговой модели: **{score:.3f}**.
-
-{{clusters}}
-
-## Вывод
-
-Получено {best_k} группы клиентов. Они отличаются средним чеком и числом покупок. Эти различия можно использовать при подготовке рассылок: постоянным клиентам предлагать бонусы, покупателям с большим чеком — более дорогие товары, а остальным — скидки на повторную покупку.
-
-Коэффициент силуэта {score:.3f} показывает, что группы выделяются, но частично пересекаются. Рекомендации пока являются предположениями: проверить их эффективность можно только на реальных данных и результатах рекламных кампаний.
-
-Подробные данные сохранены в `data/customers.csv` и `results/customers_with_clusters.csv`, графики — в `results/figures/`.
-""".replace("{clusters}", "\n".join(rows))
-    (RESULTS_DIR / "report.md").write_text(report, encoding="utf-8")
-    metrics.to_csv(RESULTS_DIR / "k_selection_metrics.csv", index=False)
-
-
 def main() -> None:
     data = generate_customer_data()
     save_eda(data)
     feature_columns = ["Age", "AveragePurchaseValue", "PurchaseFrequency"]
     scaled = StandardScaler().fit_transform(data[feature_columns])
     best_k, metrics = select_k(scaled)
+    metrics.to_csv(RESULTS_DIR / "k_selection_metrics.csv", index=False)
     clustered, _, score = cluster_customers(data, best_k)
-    write_report(clustered, metrics, best_k, score)
-    print(f"Готово: {len(clustered)} клиентов, выбрано кластеров: {best_k}, silhouette: {score:.3f}")
+    print(f"Клиентов: {len(clustered)}, кластеров: {best_k}, силуэт: {score:.3f}")
     print(f"Результаты: {RESULTS_DIR}")
 
 
