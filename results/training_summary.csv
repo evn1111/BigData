@@ -1,0 +1,2 @@
+BestEpoch,ValidationLogLoss,TrainSize,ValidationSize,TestSize,MajorityAccuracy
+54,0.5058907382164513,360,120,120,0.6083333333333333
