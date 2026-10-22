@@ -5,3 +5,4 @@ __pycache__/
 .matplotlib/
 .cache/
 submission/
+outputs/**/*.inspect.ndjson

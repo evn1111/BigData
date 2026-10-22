@@ -1,0 +1,215 @@
+{
+  "checks": {
+    "rows": 1200,
+    "empty_rows": 0,
+    "missing": {
+      "OrderID": 0,
+      "Date": 0,
+      "Category": 0,
+      "Product": 0,
+      "Price": 0,
+      "Quantity": 0,
+      "CustomerRegion": 0
+    },
+    "negative": {
+      "OrderID": 0,
+      "Price": 0,
+      "Quantity": 0
+    },
+    "invalid_dates": 0,
+    "duplicate_orders": 0,
+    "zero_prices": 0,
+    "zero_quantities": 0
+  },
+  "revenue": 501162694.18,
+  "quantity": 6646,
+  "best_month": "2023-12",
+  "best_month_revenue": 51585050.01,
+  "top_products": [
+    {
+      "Product": "Полотенце",
+      "Quantity": 507,
+      "Total": 36653170.18
+    },
+    {
+      "Product": "Кофе",
+      "Quantity": 493,
+      "Total": 37886516.76
+    },
+    {
+      "Product": "Хлеб",
+      "Quantity": 488,
+      "Total": 35775497.38
+    },
+    {
+      "Product": "Куртка",
+      "Quantity": 476,
+      "Total": 35283629.62
+    },
+    {
+      "Product": "Плед",
+      "Quantity": 461,
+      "Total": 33304959.07
+    }
+  ],
+  "categories": [
+    {
+      "Category": "Одежда",
+      "Quantity": 1575,
+      "Total": 111758233.5,
+      "AveragePrice": 72849.66896907217
+    },
+    {
+      "Category": "Продукты",
+      "Quantity": 1789,
+      "Total": 140001406.21,
+      "AveragePrice": 77594.70750778816
+    },
+    {
+      "Category": "Товары для дома",
+      "Quantity": 1842,
+      "Total": 136290295.87,
+      "AveragePrice": 72445.2081736527
+    },
+    {
+      "Category": "Электроника",
+      "Quantity": 1440,
+      "Total": 113112758.6,
+      "AveragePrice": 77994.98830708662
+    }
+  ],
+  "regions": [
+    {
+      "CustomerRegion": "Новосибирск",
+      "Total": 92400035.99
+    },
+    {
+      "CustomerRegion": "Московская область",
+      "Total": 89163061.56
+    },
+    {
+      "CustomerRegion": "Казань",
+      "Total": 84948315.69
+    },
+    {
+      "CustomerRegion": "Екатеринбург",
+      "Total": 78621029.02
+    },
+    {
+      "CustomerRegion": "Санкт‑Петербург",
+      "Total": 78402886.28
+    },
+    {
+      "CustomerRegion": "Москва",
+      "Total": 77627365.64
+    }
+  ],
+  "monthly": [
+    {
+      "Month": "2023-01",
+      "Total": 40161032.71,
+      "Orders": 96,
+      "Quantity": 517
+    },
+    {
+      "Month": "2023-02",
+      "Total": 37386974.95,
+      "Orders": 93,
+      "Quantity": 573
+    },
+    {
+      "Month": "2023-03",
+      "Total": 38032396.3,
+      "Orders": 85,
+      "Quantity": 474
+    },
+    {
+      "Month": "2023-04",
+      "Total": 42708719.55,
+      "Orders": 101,
+      "Quantity": 551
+    },
+    {
+      "Month": "2023-05",
+      "Total": 41600638.02,
+      "Orders": 102,
+      "Quantity": 520
+    },
+    {
+      "Month": "2023-06",
+      "Total": 39883809.07,
+      "Orders": 95,
+      "Quantity": 553
+    },
+    {
+      "Month": "2023-07",
+      "Total": 38890200.17,
+      "Orders": 97,
+      "Quantity": 531
+    },
+    {
+      "Month": "2023-08",
+      "Total": 39979970.36,
+      "Orders": 101,
+      "Quantity": 560
+    },
+    {
+      "Month": "2023-09",
+      "Total": 40218791.23,
+      "Orders": 97,
+      "Quantity": 519
+    },
+    {
+      "Month": "2023-10",
+      "Total": 44104954.54,
+      "Orders": 111,
+      "Quantity": 588
+    },
+    {
+      "Month": "2023-11",
+      "Total": 46610157.27,
+      "Orders": 110,
+      "Quantity": 585
+    },
+    {
+      "Month": "2023-12",
+      "Total": 51585050.01,
+      "Orders": 112,
+      "Quantity": 675
+    }
+  ],
+  "growth": [
+    {
+      "Category": "Одежда",
+      "January": 6643127.86,
+      "December": 11357919.58,
+      "ChangePct": 0.7097246687646923,
+      "GrowingMonths": 8,
+      "MonthlySlope": 398589.34713286726
+    },
+    {
+      "Category": "Продукты",
+      "January": 3971557.02,
+      "December": 15667227.98,
+      "ChangePct": 2.9448578733989828,
+      "GrowingMonths": 6,
+      "MonthlySlope": 578213.4536713292
+    },
+    {
+      "Category": "Товары для дома",
+      "January": 17160111.37,
+      "December": 12073989.59,
+      "ChangePct": -0.29639211951105193,
+      "GrowingMonths": 7,
+      "MonthlySlope": -80693.81346153838
+    },
+    {
+      "Category": "Электроника",
+      "January": 12386236.459999999,
+      "December": 12485912.86,
+      "ChangePct": 0.008047351616602416,
+      "GrowingMonths": 6,
+      "MonthlySlope": -81859.03846153844
+    }
+  ]
+}
